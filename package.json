@@ -1,0 +1,10 @@
+{
+  "name": "realtime-transactions",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Amir Sharif <budgeneration@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@prettier/plugin-ruby": "^3.2.0"
+  }
+}

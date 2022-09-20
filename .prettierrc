@@ -1,0 +1,16 @@
+{
+  "trailingComma": "all",
+  "tabWidth": 2,
+  "semi": false,
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": "*.rb",
+      "options": {
+        "singleQuote": true,
+        "preferSingleQuotes": true,
+        "addTrailingCommas": true
+      }
+    }
+  ]
+}
