@@ -1,6 +1,7 @@
 # typed: true
 # This method responds to commands in the Cqrs model.
-# It will generate a valid event and route it to a Calculator to process.
+# It will generate a VALID event and route it to a `Calculator` to process,
+# in this case the User is the AggregateRoot.
 class TransactionEventProcessor
   extend T::Sig
 
@@ -16,6 +17,10 @@ class TransactionEventProcessor
       command.balance.amount_as_numeric >= 0,
       "Amount must be equal or greator than 0"
     )
+    assert(
+      command.balance.currency == user.currency_code,
+      "Can only interact currencies of the same type."
+    )
 
     event =
       Events::Transactions::Load.new(
@@ -26,11 +31,41 @@ class TransactionEventProcessor
         }
       )
 
-    binding.pry
     user.apply(event)
+    Rails.configuration.event_store.publish(
+      event,
+      stream_name: command.stream_name
+    )
   end
 
+  sig { params(command: Commands::Transactions::Authorize).void }
   def authorize(command)
-    # Publish an authorize event.
+    user = User.find(command.user_id)
+
+    assert(
+      command.balance.debitOrCredit == TransactionType::Debit,
+      "Credits must go through authorization flow"
+    )
+    assert(
+      command.balance.currency == user.currency_code,
+      "Can only interact currencies of the same type."
+    )
+
+    event =
+      Events::Transactions::Authorize.new(data: { balance: command.balance })
+
+    if command.balance.amount_as_decimal < user.balance.amount_as_decimal
+      user.apply(event)
+      event.data[:response_code] = ResponseCodeType::Approved
+    else
+      # We're authorizing more than this user has in their account.
+      # This is a no-op.
+      event.data[:response_code] = ResponseCodeType::Declined
+    end
+
+    Rails.configuration.event_store.publish(
+      event,
+      stream_name: command.stream_name
+    )
   end
 end

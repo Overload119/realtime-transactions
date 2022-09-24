@@ -13,19 +13,17 @@ class User < ApplicationRecord
   # This model acts as the logic for event processing. For more complicated
   # we could use another Calculator/Processor class.
   on Events::Transactions::Authorize do |event|
-    added_amount = event.data.balance.amount_as_numeric
-
-    assert(
-      event.data.balance.currency == self.currency_code,
-      "Can only add currencies of the same type."
-    )
-
-    self.currency_amount += added_amount
+    T.bind(self, User)
+    amount = event.data[:balance].amount
+    self.currency_amount -= BigDecimal(amount)
     save!
   end
 
   on Events::Transactions::Load do |event|
-    update(currency_amount: event)
+    T.bind(self, User)
+    amount = event.data[:balance].amount
+    self.currency_amount += BigDecimal(amount)
+    save!
   end
 
   # To handle various "accounts" per user, I'd introduce an account and setup an association.
@@ -36,8 +34,8 @@ class User < ApplicationRecord
     TransactionAmount.new(
       currency: currency_code,
       # Assume balance is always a credit?
-      debitOrCredit: "CREDIT",
-      amount: currency_amount
+      debitOrCredit: TransactionType::Credit,
+      amount: currency_amount.round(2).to_s
     )
   end
 

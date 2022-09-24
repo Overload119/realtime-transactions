@@ -379,16 +379,16 @@ class User
     sig { void }
     def created_at_will_change!; end
 
-    sig { returns(T.nilable(::Integer)) }
+    sig { returns(::BigDecimal) }
     def currency_amount; end
 
-    sig { params(value: T.nilable(::Integer)).returns(T.nilable(::Integer)) }
+    sig { params(value: ::BigDecimal).returns(::BigDecimal) }
     def currency_amount=(value); end
 
     sig { returns(T::Boolean) }
     def currency_amount?; end
 
-    sig { returns(T.nilable(::Integer)) }
+    sig { returns(T.nilable(::BigDecimal)) }
     def currency_amount_before_last_save; end
 
     sig { returns(T.untyped) }
@@ -397,37 +397,37 @@ class User
     sig { returns(T::Boolean) }
     def currency_amount_came_from_user?; end
 
-    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    sig { returns(T.nilable([::BigDecimal, ::BigDecimal])) }
     def currency_amount_change; end
 
-    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    sig { returns(T.nilable([::BigDecimal, ::BigDecimal])) }
     def currency_amount_change_to_be_saved; end
 
     sig { returns(T::Boolean) }
     def currency_amount_changed?; end
 
-    sig { returns(T.nilable(::Integer)) }
+    sig { returns(T.nilable(::BigDecimal)) }
     def currency_amount_in_database; end
 
-    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    sig { returns(T.nilable([::BigDecimal, ::BigDecimal])) }
     def currency_amount_previous_change; end
 
     sig { returns(T::Boolean) }
     def currency_amount_previously_changed?; end
 
-    sig { returns(T.nilable(::Integer)) }
+    sig { returns(T.nilable(::BigDecimal)) }
     def currency_amount_previously_was; end
 
-    sig { returns(T.nilable(::Integer)) }
+    sig { returns(T.nilable(::BigDecimal)) }
     def currency_amount_was; end
 
     sig { void }
     def currency_amount_will_change!; end
 
-    sig { returns(T.nilable(::String)) }
+    sig { returns(::String) }
     def currency_code; end
 
-    sig { params(value: T.nilable(::String)).returns(T.nilable(::String)) }
+    sig { params(value: ::String).returns(::String) }
     def currency_code=(value); end
 
     sig { returns(T::Boolean) }
@@ -442,10 +442,10 @@ class User
     sig { returns(T::Boolean) }
     def currency_code_came_from_user?; end
 
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    sig { returns(T.nilable([::String, ::String])) }
     def currency_code_change; end
 
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    sig { returns(T.nilable([::String, ::String])) }
     def currency_code_change_to_be_saved; end
 
     sig { returns(T::Boolean) }
@@ -454,7 +454,7 @@ class User
     sig { returns(T.nilable(::String)) }
     def currency_code_in_database; end
 
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    sig { returns(T.nilable([::String, ::String])) }
     def currency_code_previous_change; end
 
     sig { returns(T::Boolean) }
@@ -469,7 +469,7 @@ class User
     sig { void }
     def currency_code_will_change!; end
 
-    sig { returns(::String) }
+    sig { returns(T.nilable(::String)) }
     def id; end
 
     sig { params(value: ::String).returns(::String) }
@@ -487,10 +487,10 @@ class User
     sig { returns(T::Boolean) }
     def id_came_from_user?; end
 
-    sig { returns(T.nilable([::String, ::String])) }
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
     def id_change; end
 
-    sig { returns(T.nilable([::String, ::String])) }
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
     def id_change_to_be_saved; end
 
     sig { returns(T::Boolean) }
@@ -499,7 +499,7 @@ class User
     sig { returns(T.nilable(::String)) }
     def id_in_database; end
 
-    sig { returns(T.nilable([::String, ::String])) }
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
     def id_previous_change; end
 
     sig { returns(T::Boolean) }
@@ -535,19 +535,19 @@ class User
     sig { returns(T::Boolean) }
     def saved_change_to_created_at?; end
 
-    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    sig { returns(T.nilable([::BigDecimal, ::BigDecimal])) }
     def saved_change_to_currency_amount; end
 
     sig { returns(T::Boolean) }
     def saved_change_to_currency_amount?; end
 
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    sig { returns(T.nilable([::String, ::String])) }
     def saved_change_to_currency_code; end
 
     sig { returns(T::Boolean) }
     def saved_change_to_currency_code?; end
 
-    sig { returns(T.nilable([::String, ::String])) }
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
     def saved_change_to_id; end
 
     sig { returns(T::Boolean) }

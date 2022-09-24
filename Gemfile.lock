@@ -192,11 +192,11 @@ GEM
       ruby_event_store (= 2.5.1)
     ruby_event_store-rspec (2.5.1)
       rspec (~> 3.0)
-    solid_assert (1.0.0)
+    solid_assert (1.1.0)
     sorbet (0.5.10417)
       sorbet-static (= 0.5.10417)
     sorbet-runtime (0.5.10417)
-    sorbet-static (0.5.10417-universal-darwin-20)
+    sorbet-static (0.5.10417-universal-darwin-21)
     sorbet-static-and-runtime (0.5.10417)
       sorbet (= 0.5.10417)
       sorbet-runtime (= 0.5.10417)
@@ -253,9 +253,10 @@ GEM
     zeitwerk (2.6.0)
 
 PLATFORMS
-  x86_64-darwin-20
+  x86_64-darwin-21
 
 DEPENDENCIES
+  aggregate_root
   bootsnap (>= 1.4.4)
   byebug
   committee
@@ -266,6 +267,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 6.1.4, >= 6.1.4.1)
   rails_event_store
+  rails_event_store_active_record
   ruby_event_store-rspec
   solid_assert
   sorbet
@@ -279,7 +281,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 2.7.4p191
+   ruby 2.7.5p203
 
 BUNDLED WITH
    2.3.18

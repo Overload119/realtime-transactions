@@ -10,4 +10,9 @@ class TransactionAmount < T::Struct
   def amount_as_numeric
     amount.to_f
   end
+
+  sig { returns(BigDecimal) }
+  def amount_as_decimal
+    BigDecimal(amount)
+  end
 end

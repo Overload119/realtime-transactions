@@ -5,8 +5,8 @@ class CreateUsers < ActiveRecord::Migration[6.1]
 
       # Typically store as an integer amount with the lowest denomination. (ie. 1 = 1 cent)
       # Here, we'll store as a decimal for simplicity.
-      t.decimal :currency_amount, default: 0.0
-      t.string :currency_code, default: "USD"
+      t.decimal :currency_amount, default: 0.0, null: false
+      t.string :currency_code, default: "USD", null: false
       t.timestamps
     end
     add_index :users, :id, unique: true

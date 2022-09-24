@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 2022_09_15_222204) do
   end
 
   create_table "users", id: :string, force: :cascade do |t|
-    t.decimal "currency_amount", default: "0.0"
-    t.string "currency_code", default: "USD"
+    t.decimal "currency_amount", default: "0.0", null: false
+    t.string "currency_code", default: "USD", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["id"], name: "index_users_on_id", unique: true
