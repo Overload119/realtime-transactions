@@ -14,7 +14,7 @@ class User < ApplicationRecord
   # we could use another Calculator/Processor class.
   on Events::Transactions::Authorize do |event|
     T.bind(self, User)
-    amount = event.data[:balance].amount
+    amount = BigDecimal(event.data[:balance].amount)
     self.currency_amount -= BigDecimal(amount)
     save!
   end
@@ -29,6 +29,8 @@ class User < ApplicationRecord
   # To handle various "accounts" per user, I'd introduce an account and setup an association.
   # has_many :accounts
   # For this app, we assume currency is always in USD.
+  # We re-use the TransactionAmount struct for convenience, but this can be it's own
+  # type without the debitOrCredit property.
   sig { returns(TransactionAmount) }
   def balance
     TransactionAmount.new(

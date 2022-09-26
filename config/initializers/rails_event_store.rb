@@ -20,24 +20,4 @@ Rails.configuration.to_prepare do
     Commands::Transactions::Authorize =>
       transaction_processor.public_method(:authorize)
   }.map(&register)
-
-  # event_store.subscribe(
-  #   -> (event) { },
-
-  # )
-
-  # def call(cqrs)
-  #   cqrs.subscribe(
-  #     -> (event) { register_customer(event) },
-  #     [Crm::CustomerRegistered]
-  #   )
-
-  #   cqrs.subscribe(
-  #       -> (event) { promote_to_vip(event) },
-  #       [Crm::CustomerPromotedToVip]
-  #   )
-  # end
-
-  # Add subscribers.
-  # event_store.subscribe(TransactionEventProcessor)
 end
